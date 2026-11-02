@@ -2,25 +2,24 @@ const menuButton = document.querySelector(".menu-toggle");
 const navigation = document.querySelector(".nav");
 
 function closeMenu() {
-  menuButton.classList.remove("is-open");
-  navigation.classList.remove("is-open");
+  menuButton?.classList.remove("is-open");
+  navigation?.classList.remove("is-open");
   document.body.classList.remove("menu-open");
-  menuButton.setAttribute("aria-expanded", "false");
-  menuButton.setAttribute("aria-label", "Відкрити меню");
+  menuButton?.setAttribute("aria-expanded", "false");
+  menuButton?.setAttribute("aria-label", "Відкрити меню");
 }
 
-menuButton.addEventListener("click", () => {
+menuButton?.addEventListener("click", () => {
   const isOpen = menuButton.getAttribute("aria-expanded") === "true";
   if (isOpen) return closeMenu();
   menuButton.classList.add("is-open");
   navigation.classList.add("is-open");
   document.body.classList.add("menu-open");
-  menuButton.setAttribute("aria-expanded", "true");
-  menuButton.setAttribute("aria-label", "Закрити меню");
+  menuButton?.setAttribute("aria-expanded", "true");
+  menuButton?.setAttribute("aria-label", "Закрити меню");
 });
 
-navigation
-  .querySelectorAll("a")
+navigation?.querySelectorAll("a")
   .forEach((link) => link.addEventListener("click", closeMenu));
 document.addEventListener("keydown", (event) => {
   if (event.key === "Escape") closeMenu();
@@ -44,7 +43,7 @@ window.addEventListener("resize", () => {
       else delete slide.dataset.position;
       slide.setAttribute("aria-hidden", delta === 0 ? "false" : "true");
     });
-    counter.textContent = String(current + 1).padStart(2, "0");
+    if (counter) counter.textContent = String(current + 1).padStart(2, "0");
   };
   const move = (step) => {
     current = (current + step + slides.length) % slides.length;
@@ -52,10 +51,10 @@ window.addEventListener("resize", () => {
   };
   document
     .querySelector("[data-cert-prev]")
-    .addEventListener("click", () => move(-1));
+    ?.addEventListener("click", () => move(-1));
   document
     .querySelector("[data-cert-next]")
-    .addEventListener("click", () => move(1));
+    ?.addEventListener("click", () => move(1));
   let startX = null;
   stage.addEventListener(
     "touchstart",
